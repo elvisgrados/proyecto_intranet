@@ -33,22 +33,12 @@
             @csrf
 
             <div class="input-box">
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Correo electrónico" 
-                    value="{{ old('email') }}" 
-                    required 
-                    autofocus>
+                <input type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" required autofocus>
                 <i class="fas fa-envelope"></i>
             </div>
 
             <div class="input-box">
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="Contraseña" 
-                    required>
+                <input type="password" name="password" placeholder="Contraseña" required>
                 <i class="fas fa-lock"></i>
             </div>
 

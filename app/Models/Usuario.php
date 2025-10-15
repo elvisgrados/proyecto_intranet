@@ -21,9 +21,12 @@ class Usuario extends Authenticatable
         'email',
         'password',
         'telefono',
+        'foto',
         'estado',
         'fecha_registro'
     ];
 
-    protected $hidden = ['password'];
+    protected $hidden = ['
+    password'
+];
 }

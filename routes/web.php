@@ -14,18 +14,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('docente.dashboard');
+    return view('auth.login');
 });
 
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\DocenteCursoController;
+use App\Http\Controllers\ConfiguracionController;
 
 Route::middleware(['auth', 'docente'])->group(function () {
     Route::get('/docente', [DocenteController::class, 'index'])->name('docente.dashboard');
     Route::get('/docente/horario', [DocenteController::class, 'horario'])->name('docente.horario');
-    Route::get('/docente/cursos', [DocenteController::class, 'cursos'])->name('docente.cursos');
+    Route::get('/docente/cursos', [DocenteCursoController::class, 'index'])->name('docente.cursos');
     Route::get('/docente/datos', [DocenteController::class, 'datos'])->name('docente.datos');
     Route::get('/docente/comunicaciones', [DocenteController::class, 'comunicaciones'])->name('docente.comunicaciones');
     Route::get('/docente/informes', [DocenteController::class, 'informes'])->name('docente.informes');
+    Route::get('/docente/asistencia', [DocenteController::class, 'asistencia'])->name('docente.asistencia');
+    Route::get('/docente/evaluaciones', [DocenteController::class, 'evaluaciones'])->name('docente.evaluaciones');
+    Route::get('/docente/configuracion', [App\Http\Controllers\ConfiguracionController::class, 'index'])
+    ->name('docente.configuracion');
+    Route::post('/docente/actualizarPerfil', [App\Http\Controllers\ConfiguracionController::class, 'actualizar'])
+    ->name('docente.actualizar');
+    
 });
 
 use App\Http\Controllers\AlumnoController;

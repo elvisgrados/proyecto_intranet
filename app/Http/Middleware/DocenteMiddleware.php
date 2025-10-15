@@ -14,7 +14,7 @@ class DocenteMiddleware
     public function handle(Request $request, Closure $next)
     {
         // Verifica que el usuario esté autenticado y sea docente
-        if (Auth::check() && Auth::user()->rol === 'docente') {
+        if (Auth::check() && Auth::user()->id_tipo === 2) {
             return $next($request);
         }
 
