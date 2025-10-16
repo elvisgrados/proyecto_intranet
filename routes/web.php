@@ -40,12 +40,20 @@ Route::middleware(['auth', 'docente'])->group(function () {
 use App\Http\Controllers\AlumnoController;
 
 Route::middleware(['auth', 'alumno'])->group(function () {
-    Route::get('/alumno', [DocenteController::class, 'index'])->name('alumno.dashboard');
-    Route::get('/alumno/horario', [DocenteController::class, 'horario'])->name('alumno.horario');
-    Route::get('/alumno/cursos', [DocenteController::class, 'cursos'])->name('alumno.cursos');
-    Route::get('/alumno/datos', [DocenteController::class, 'pagos'])->name('alumno.pagos');
-    Route::get('/alumno/comunicaciones', [DocenteController::class, 'resultados'])->name('alumno.resultados');
+    Route::get('/alumno', [AlumnoController::class, 'index'])->name('alumno.dashboard');
+    Route::get('/perfil', [AlumnoController::class, 'perfil'])->name('perfil');
+    Route::get('/password/change', function () {
+        return view('alumno.cambiar_contrasena'); // puedes crear esta vista vacía
+    })->name('password.change');
+    Route::get('/alumno/horario', [AlumnoController::class, 'horario'])->name('alumno.horario');
+    Route::get('/alumno/cursos', [AlumnoController::class, 'cursos'])->name('alumno.cursos');
+    Route::get('/alumno/pagos', [AlumnoController::class, 'pagos'])->name('alumno.pagos');
+    Route::get('/alumno/resultados', [AlumnoController::class, 'resultados'])->name('alumno.resultados');
+    Route::get('/alumno/horario/filtrar', [AlumnoController::class, 'filtrarHorario'])
+    ->name('alumno.horario.filtrar');
 });
+
+
 
 use App\Http\Controllers\AuthController;
 

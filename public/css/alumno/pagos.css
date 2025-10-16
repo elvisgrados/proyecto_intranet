@@ -1,0 +1,23 @@
+.resumen-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.resumen-card {
+  flex: 1 1 250px;
+  border-radius: 12px;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+.resumen-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.resumen-valor {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
