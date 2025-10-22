@@ -13,7 +13,7 @@
         <h1>Dashboard Docente</h1>
         <div class="user-info">
           <div>
-            <strong>{{ Auth::user()->nombres }}</strong>
+            <strong>{{ Auth::user()->nombres }} {{ Auth::user()->apellidos }} </strong>
             <p>{{ Auth::user()->email }}</p>
           </div>
           @if(Auth::user()->foto && file_exists(public_path(Auth::user()->foto)))

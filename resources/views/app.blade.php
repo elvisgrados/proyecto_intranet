@@ -57,10 +57,6 @@
                     <a href="{{ route('login') }}">Iniciar sesión</a>
                 @endauth
             </nav>
-
-            <div class="sidebar-footer">
-                <small>Última conexión:<br>{{ now()->format('d M Y, H:i') }}</small>
-            </div>
         </aside>
 
         {{-- ✅ CONTENIDO PRINCIPAL --}}

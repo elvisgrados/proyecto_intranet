@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Docente;
 use App\Models\AsignacionDocente;
+use App\Models\Curso;
+use App\Models\Autoevaluacion;
 
 class DocenteCursoController extends Controller
 {
@@ -26,5 +28,24 @@ class DocenteCursoController extends Controller
             ->get();
 
         return view('docente.cursos', compact('asignaciones', 'docente'));
+    }
+
+    public function verCurso($id){
+        $curso = \App\Models\Curso::with(['temas', 'autoevaluaciones'])
+            ->findOrFail($id);
+
+        // Agrupar por semana
+        $temasPorSemana = $curso->temas->groupBy('semana');
+        $autoevaluacionesPorSemana = $curso->autoevaluaciones->groupBy('semana');
+
+        return view('docente.curso-detalle', compact('curso', 'temasPorSemana', 'autoevaluacionesPorSemana'));
+    }
+
+    public function verResultados($id)
+    {
+        $evaluacion = Autoevaluacion::with('resultados.alumno.usuario')
+            ->findOrFail($id);
+
+        return view('docente.resultados-evaluacion', compact('evaluacion'));
     }
 }
