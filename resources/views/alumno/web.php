@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,15 @@ Route::middleware(['auth', 'docente'])->group(function () {
     Route::get('/docente/datos', [DocenteController::class, 'datos'])->name('docente.datos');
     Route::get('/docente/comunicaciones', [DocenteController::class, 'comunicaciones'])->name('docente.comunicaciones');
     Route::get('/docente/informes', [DocenteController::class, 'informes'])->name('docente.informes');
+});
+
+use App\Http\Controllers\AlumnoController;
+
+Route::middleware(['auth', 'alumno'])->group(function () {
+    Route::get('/alumno/cursos', [AlumnoController::class, 'cursos'])->name('alumno.cursos');
+    Route::get('/alumno/horario', [AlumnoController::class, 'horario'])->name('alumno.horario');
+    Route::get('/alumno/resultados', [AlumnoController::class, 'resultados'])->name('alumno.resultados');
+    Route::get('/alumno/pagos', [AlumnoController::class, 'pagos'])->name('alumno.pagos');
 });
 
 

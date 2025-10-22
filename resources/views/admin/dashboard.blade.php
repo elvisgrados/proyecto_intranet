@@ -6,3 +6,4 @@
     <p>Este es tu panel de control administrador.</p>
 </div>
 @endsection
+

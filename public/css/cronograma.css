@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Encabezado (navbar principal) */
+.navbar {
+    display: flex; /* Alinea elementos horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacia entre izquierda y derecha */
+    background-color: #6c02e3; /* Color de fondo morado */
+    padding: 0 20px; /* Espaciado interno lateral */
+    height: 110px; /* Altura del encabezado */
+    color: white; /* Color del texto */
+}
+
+/* Lado izquierdo del navbar (logo + menú) */
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 100px; /* Tamaño del logo */
+    margin-right: 20px; /* Espacio entre logo y menú */
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px; /* Espaciado entre enlaces */
+    font-size: 15px; /* Tamaño del texto del menú */
+}
+
+.navbar-menu a:hover {
+    text-decoration: underline; /* Subraya al pasar el mouse */
+}
+
+/* Lado derecho del navbar (notificación + usuario) */
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.notification i {
+    font-size: 20px; /* Tamaño del ícono campana */
+}
+
+.notification .badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    border-radius: 50%; /* Badge redondo */
+    padding: 2px 6px;
+    font-size: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    height: 30px;
+    border-radius: 50%; /* Foto circular */
+    margin-right: 8px;
+}
+
+.user-info span {
+    font-weight: bold; /* Nombre en negrita */
+}
