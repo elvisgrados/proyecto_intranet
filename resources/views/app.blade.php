@@ -56,7 +56,7 @@
                         <a href="{{ route('docente.informes') }}">📈 Informes</a>
                         <a href="{{ route('docente.configuracion') }}">⚙️ Configuración</a>
                     @elseif(Auth::user()->id_tipo === 3)
-                        <a href="{{ route('alumno.dashboard') }}">🏠 Panel</a>
+                        <a href="{{ route('alumno.dashboard') }}">🏠 Datos Usuario</a>
                         <a href="{{ route('alumno.cursos') }}">📘 Cursos</a>
                         <a href="{{ route('alumno.horario') }}">🗓️ Horarios</a>
                         <a href="{{ route('alumno.resultados') }}">📊 Resultados</a>

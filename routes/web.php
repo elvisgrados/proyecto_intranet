@@ -51,6 +51,9 @@ Route::middleware(['auth', 'alumno'])->group(function () {
     Route::get('/alumno/resultados', [AlumnoController::class, 'resultados'])->name('alumno.resultados');
     Route::get('/alumno/horario/filtrar', [AlumnoController::class, 'filtrarHorario'])
     ->name('alumno.horario.filtrar');
+
+
+   
 });
 
 
