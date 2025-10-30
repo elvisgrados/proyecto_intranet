@@ -17,34 +17,54 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\DocenteCursoController;
+use App\Http\Controllers\EvaluacionesDocenteController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\HorarioController;
 
 Route::middleware(['auth', 'docente'])->group(function () {
     Route::get('/docente', [DocenteController::class, 'index'])->name('docente.dashboard');
-    Route::get('/docente/horario', [DocenteController::class, 'horario'])->name('docente.horario');
+    Route::get('/docente/horario', [HorarioController::class, 'index'])->name('docente.horario');
     Route::get('/docente/cursos', [DocenteCursoController::class, 'index'])->name('docente.cursos');
     Route::get('/docente/datos', [DocenteController::class, 'datos'])->name('docente.datos');
     Route::get('/docente/comunicaciones', [DocenteController::class, 'comunicaciones'])->name('docente.comunicaciones');
     Route::get('/docente/informes', [DocenteController::class, 'informes'])->name('docente.informes');
-    Route::get('/docente/asistencia', [DocenteController::class, 'asistencia'])->name('docente.asistencia');
-    Route::get('/docente/evaluaciones', [DocenteController::class, 'evaluaciones'])->name('docente.evaluaciones');
-    Route::get('/docente/configuracion', [App\Http\Controllers\ConfiguracionController::class, 'index'])
-    ->name('docente.configuracion');
-    Route::post('/docente/actualizarPerfil', [App\Http\Controllers\ConfiguracionController::class, 'actualizar'])
-    ->name('docente.actualizar');
+    Route::get('/docente/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
+    Route::post('/docente/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
+    Route::get('/docente/evaluaciones', [EvaluacionesDocenteController::class, 'index'])->name('docente.evaluaciones');
+    Route::get('/docente/configuracion', [ConfiguracionController::class, 'index'])->name('docente.configuracion');
+    Route::post('/docente/configuracion/actualizar', [ConfiguracionController::class, 'actualizar'])->name('docente.actualizar');
+    Route::get('/docente/curso/{id}', [DocenteCursoController::class, 'verCurso'])->name('docente.curso.ver');
+Route::get('/docente/evaluacion/{id}/resultados', [DocenteCursoController::class, 'verResultados'])->name('docente.evaluacion.resultados');
     
 });
 
 use App\Http\Controllers\AlumnoController;
 
-Route::middleware(['auth', 'alumno'])->group(function () {
-    Route::get('/alumno', [DocenteController::class, 'index'])->name('alumno.dashboard');
-    Route::get('/alumno/horario', [DocenteController::class, 'horario'])->name('alumno.horario');
-    Route::get('/alumno/cursos', [DocenteController::class, 'cursos'])->name('alumno.cursos');
-    Route::get('/alumno/datos', [DocenteController::class, 'pagos'])->name('alumno.pagos');
-    Route::get('/alumno/comunicaciones', [DocenteController::class, 'resultados'])->name('alumno.resultados');
+Route::middleware(['auth'])->group(function () {
+
+    // 📌 Dashboard del alumno
+    Route::get('/alumno', [AlumnoController::class, 'index'])->name('alumno.dashboard');
+
+    // 📚 Cursos y horario
+    Route::get('/alumno/horario', [AlumnoController::class, 'horario'])->name('alumno.horario');
+    Route::get('/alumno/cursos', [AlumnoController::class, 'cursos'])->name('alumno.cursos');
+    Route::get('/alumno/curso/{id}', [AlumnoController::class, 'verCurso'])->name('alumno.curso_detalle');
+    Route::get('/alumno/curso/{id}/examen', function ($id) {
+        return "Página de examen del curso $id";
+    })->name('alumno.examen');
+
+    // 💳 Pagos y resultados
+    Route::get('/alumno/pagos', [AlumnoController::class, 'pagos'])->name('alumno.pagos');
+    Route::get('/alumno/resultados', [AlumnoController::class, 'resultados'])->name('alumno.resultados');
+
+    // 👤 PERFIL DEL ALUMNO
+    Route::get('/alumno/perfil', [AlumnoController::class, 'perfil'])->name('alumno.perfil');
+    Route::get('/alumno/perfil/editar', [AlumnoController::class, 'editar'])->name('alumno.editar');
+    Route::post('/alumno/perfil/actualizar', [AlumnoController::class, 'actualizarPerfil'])->name('alumno.actualizar');
+   
 });
 
 use App\Http\Controllers\AuthController;

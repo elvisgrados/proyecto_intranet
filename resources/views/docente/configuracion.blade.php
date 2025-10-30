@@ -29,7 +29,7 @@
                         <input type="file" name="foto" id="foto" class="input-foto">
 
                         <label>Nombre completo</label>
-                        <input type="text" name="nombres" value="{{ $usuario->nombres }}" placeholder="Ej. Carlos Fernández">
+                        <input type="text" name="nombres" value="{{ $usuario->nombres }}, {{ $usuario->apellidos}}" placeholder="Ej. Carlos Fernández">
 
                         <label>Correo electrónico</label>
                         <input type="email" name="email" value="{{ $usuario->email }}" placeholder="ejemplo@correo.com">

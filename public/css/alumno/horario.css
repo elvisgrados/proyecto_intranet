@@ -1,0 +1,88 @@
+.horario-wrapper {
+    max-width: 700px;
+    margin: 30px auto;
+    font-family: 'Roboto', sans-serif;
+    color: #111;
+}
+.horario-header {
+    text-align: center;
+    background-color: #f8f9fb;
+    border-radius: 10px;
+    padding: 15px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.horario-header h2 {
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 5px;
+}
+.horario-header h4 {
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 10px;
+}
+.dias-semana {
+    display: flex;
+    justify-content: space-around;
+    color: #777;
+    font-weight: 600;
+    font-size: 14px;
+}
+.horario-lista {
+    margin-top: 20px;
+}
+.horario-item {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.fecha-col {
+    background: #e6f0ff;
+    color: #003366;
+    width: 80px;
+    text-align: center;
+    padding: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.fecha-col .num {
+    font-size: 24px;
+    font-weight: bold;
+}
+.fecha-col .dia {
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.detalle-col {
+    flex: 1;
+    padding: 10px 15px;
+}
+.detalle-col .hora {
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 4px;
+}
+.detalle-col .titulo {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+.detalle-col .docente {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+.detalle-col .aula {
+    color: #777;
+    font-size: 13px;
+}
+.vacio {
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+}

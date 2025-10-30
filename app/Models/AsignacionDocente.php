@@ -20,3 +20,5 @@ class AsignacionDocente extends Model{
         return $this->belongsTo(Docente::class, 'id_docente');
     }
 }
+
+

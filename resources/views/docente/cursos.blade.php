@@ -40,8 +40,7 @@
           </div>
 
           <div class="botones-curso">
-            <a href="#" class="btn-ver">Ver</a>
-            <button class="btn-reporte">Reporte</button>
+            <a href="{{ route('docente.curso.ver', $asignacion->curso->id_curso) }}" class="btn-ver">Ver</a>
           </div>
         </div>
       @endforeach

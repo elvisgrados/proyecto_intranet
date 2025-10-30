@@ -20,4 +20,12 @@ class Docente extends Model{
     {
         return $this->hasMany(AsignacionDocente::class, 'id_docente');
     }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'asignacion_docente', 'id_docente', 'id_curso');
+    }
+
 }
+
+
