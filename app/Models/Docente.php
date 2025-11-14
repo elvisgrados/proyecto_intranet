@@ -27,5 +27,3 @@ class Docente extends Model{
     }
 
 }
-
-

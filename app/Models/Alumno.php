@@ -38,4 +38,16 @@ class Alumno extends Model{
     public function carrera(){
         return $this->belongsTo(Carrera::class, 'id_carrera');
     }
+
+    public function notas(){
+        return $this->hasMany(Nota::class, 'id_alumno', 'id_alumno');
+    }
+
+    public function asistencias(){
+        return $this->hasMany(Asistencia::class, 'id_alumno', 'id_alumno');
+    }
+
+    public function matriculas(){
+        return $this->hasMany(AlumnoCurso::class, 'id_alumno', 'id_alumno');
+    }
 }

@@ -143,6 +143,7 @@ return [
         // 'store'  => 'redis',
     ],
 
+    'Pdf' => Barryvdh\DomPDF\Facade\Pdf::class,
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

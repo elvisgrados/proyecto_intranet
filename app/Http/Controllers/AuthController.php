@@ -7,24 +7,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller{
     // Mostrar formulario de login
-    public function showLogin()
-    {
+    public function showLogin(){
         return view('auth.login');
     }
 
     // Procesar login
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
         $usuario = Usuario::where('email', $credentials['email'])->first();
-        //dd($usuario);
 
         if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
             if ($usuario->estado == 1) {
@@ -36,6 +32,7 @@ class AuthController extends Controller
                     case 1: return redirect()->route('admin.dashboard');
                     case 2: return redirect()->route('docente.dashboard');
                     case 3: return redirect()->route('alumno.dashboard');
+                    case 4: return redirect()->route('tutor.dashboard');
                     default: return redirect('/');
                 }
             } else {
@@ -47,8 +44,7 @@ class AuthController extends Controller
     }
 
     // Cerrar sesión
-    public function logout(Request $request)
-    {
+    public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

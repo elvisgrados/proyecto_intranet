@@ -14,7 +14,19 @@ class Horario extends Model
     public $timestamps = false;
 
     public function curso(){
-        return $this->belongsTo(Curso::class, 'id_curso');
+        return $this->belongsTo(Curso::class, 'id_curso', 'id_curso');
+    }
+
+    // Si quieres acceder directamente al docente desde horario:
+    public function docente()
+    {
+        return $this->hasOneThrough(
+            Docente::class,
+            AsignacionDocente::class,
+            'id_curso',     // Foreign key en AsignacionDocente
+            'id_docente',   // Foreign key en Docente
+            'id_curso',     // Local key en Horario
+            'id_docente'    // Local key en AsignacionDocente
+        );
     }
 }
-

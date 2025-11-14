@@ -1,50 +1,44 @@
 @extends('app')
 
 @section('content')
-<div class="main-content">
-  <h1 class="titulo-pagina">📚 Mis Cursos</h1>
+<div class="w-full px-6 py-6">
 
-  <div class="resumen-grid">
-    <div class="resumen-card">
-      <div class="resumen-titulo">Cursos Activos</div>
-      <div class="resumen-valor">{{ $asignaciones->count() }}</div>
+    <!-- TÍTULO -->
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+         Mis Cursos
+    </h1>
+
+    <!-- LISTA DE CURSOS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        @forelse($asignaciones as $asignacion)
+            <a href="{{ route('docente.curso.ver', $asignacion->curso->id_curso) }}"
+               class="block bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+
+                <!-- IMAGEN DEL CURSO -->
+                <div class="h-40 w-full overflow-hidden">
+                    <img src="{{ asset('raz_verbal.jpeg') }}" 
+                         alt="Imagen del curso"
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- INFORMACIÓN -->
+                <div class="p-4 text-center">
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">
+                        {{ $asignacion->curso->nombre_curso }}
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        {{ $asignacion->curso->codigo ?? 'Código no especificado' }}
+                    </p>
+                </div>
+            </a>
+        @empty
+            <div class="col-span-full text-center text-gray-500 py-10">
+                No tienes cursos asignados actualmente.
+            </div>
+        @endforelse
+
     </div>
 
-    <div class="resumen-card">
-      <div class="resumen-titulo">Total de alumnos</div>
-      <div class="resumen-valor">
-        {{ $asignaciones->flatMap(fn($a) => $a->curso->alumnos)->unique('id_alumno')->count() }}
-      </div>
-    </div>
-
-    <div class="resumen-card">
-      <div class="resumen-titulo">Evaluaciones pendientes</div>
-      <div class="resumen-valor text-rojo">6</div>
-    </div>
-  </div>
-
-  <div class="cursos-contenedor">
-    <h2 class="cursos-titulo">Cursos asignados</h2>
-
-    <div class="cursos-lista">
-      @foreach($asignaciones as $asignacion)
-        <div class="curso-item">
-          <div>
-            <h3 class="curso-nombre">{{ $asignacion->curso->nombre_curso }}</h3>
-
-            <p class="curso-horario">
-              @foreach($asignacion->curso->horarios as $horario)
-                {{ $horario->dia }} · {{ $horario->hora_inicio }} - {{ $horario->hora_fin }}<br>
-              @endforeach
-            </p>
-          </div>
-
-          <div class="botones-curso">
-            <a href="{{ route('docente.curso.ver', $asignacion->curso->id_curso) }}" class="btn-ver">Ver</a>
-          </div>
-        </div>
-      @endforeach
-    </div>
-  </div>
 </div>
 @endsection
